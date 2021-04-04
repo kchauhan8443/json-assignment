@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.wrapper{max-width:75em;
+        margin:0 auto;
+        background-color:#fff;
+        }
+
+
+header h1 {text-align:center;
+            color:#9e9e9e;
+            font-size:0.8em;
+            text-transform:uppercase;
+          font-weight:normal;}
+
+
+
+body {
+  min-height: 100vh;
+  margin: 0; /* Important! */
+  font-family: "Open Sans", "Lato", "Helvetica Neue", Helvetica, serif;
+  background-color: #fafafa;
+  line-height: 1.8;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size:16px;
+}
+
+.posts{max-width:50em;
+        margin:0 auto;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+  padding:0 1em;
+}
+
+.posts .title {margin-bottom:1em;
+                font-weight:bold;
+                max-width:40em;
+                margin:0 auto;
+                text-align:center;}
+
+.posts .date {margin-bottom:4em;
+              margin:0 auto;}
+
+.posts .image {margin-bottom:4em;
+              margin:0 auto;
+              max-width:35em;}
+
+.menu {
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 3em 0 8em 0;
+}
+
+.menu a {
+  display: inline-block;
+  padding: 0.5em;
+  margin: 0 1em;
+  color:#f03838;
+  text-decoration: none
+}
+
+
+
+
+header img {
+  margin: 0 auto;
+  display: block;
+  width: 125px;
+  height: 125px;
+}
+
+img {width:100%}
+    </style>
+
+  </head>
+  <body onload="myLoad()">
+    <div class="">
+      <p id="display"></p>
+    </div>
+
+
+
+  </body>
+
+  <script type="text/javascript">
+
+    function myLoad(){
+
+    var xmlhttp = new XMLHttpRequest();
+var url = "https://kchauhan8443.github.io/json-assignment/products.json";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr){
+  let deals = arr.deals;
+  console.log(deals)
+    deals.forEach((deals) => {
+        // out += '<a href="' + deals[i].text + '">' +
+        // deals[i].dealName + '</a><br>';
+
+        document.getElementById("display").innerHTML += `<div class="wrapper">
+
+<div class="posts">
+  <div class="title">
+<p>${deals.dealName}</p></div>
+<img src="${deals.img}" alt="">
+
+  <div class="text">
+	<p>${deals.text}</p>
+  <p>${deals.price}</p>
+</div>
+
+
+</div>
+</div>
+<hr>
+`;
+    }
+  )
+
+
+    // console.log(out)
+  }
+
+}
+
+//     fetch('https://kchauhan8443.github.io/json-assignment/products.json').then(function(response) {
+// return response.json();
+// }).then(function(json) {
+// let products = json;
+// initialize(products);
+// }).catch(function(err) {
+// console.log('Fetch problem: ' + err.message);
+// });
+
+
+// fetch(url)
+//   .then(response => response.json())
+//   .then(data => console.log(data));
+
+  </script>
+</html>
